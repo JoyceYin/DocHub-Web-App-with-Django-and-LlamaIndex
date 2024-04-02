@@ -35,9 +35,10 @@ embed_model = LangchainEmbedding(
     HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 )
 ```
+> [!NOTE]
+> Create file storage directory "<b>Doc</b>" and LLM process directory "<b>LLMprocess</b>" under media folde
 
-<li>Create file storage directory "**Doc**" and LLM process directory "**LLMprocess**" under media folder</li>
-
+<hr>
 <li>To start the project:</li>
 
 ```python
