@@ -20,6 +20,17 @@ Make sure to install all required libraries below:
 ```shell
 pip install -r requirements.txt
 ```
+Make sure to install all required libraries below:
+```python
+### document/views.py
+### For Mac User
+embed_model = LangchainEmbedding(
+    HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2', model_kwargs={'device': 'mps'})
+)
+embed_model = LangchainEmbedding(
+    HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+)
+```
 
 To start the project: 
 ```python
