@@ -11,16 +11,20 @@ This web application is mainly developed by <b>Django</b> (Web Framework) and <b
 
 ### Installation and Run
 
-Ensure to install [Ollama](https://ollama.com/) in your local and pull LLM from Ollama (Check out [LIBRARIES](https://ollama.com/library) to look for a suitable model):
+<li>Ensure to install [Ollama](https://ollama.com/) in your local and pull LLM from Ollama (Check out [LIBRARIES](https://ollama.com/library) to look for a suitable model):</li>
+
 ```ollama
 ollama pull your_model
 ```
 
-Make sure to install all required libraries below:
+<li>Make sure to install all required libraries below: </li>
+
 ```shell
 pip install -r requirements.txt
 ```
-Make sure to install all required libraries below:
+
+<li>Make sure to install all required libraries below: </li>
+
 ```python
 ### document/views.py
 ### For Mac User
@@ -31,11 +35,11 @@ embed_model = LangchainEmbedding(
     HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 )
 ```
-<br>
-Create file storage directory "**Doc**" and LLM process directory "**LLMprocess**" under media folder
-<br>
 
-To start the project: 
+<li>Create file storage directory "**Doc**" and LLM process directory "**LLMprocess**" under media folder</li>
+
+<li>To start the project:</li>
+
 ```python
 python manage.py runserver
 ```
