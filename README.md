@@ -31,6 +31,9 @@ embed_model = LangchainEmbedding(
     HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 )
 ```
+<br>
+Create file storage directory "**Doc**" and LLM process directory "**LLMprocess**" under media folder
+<br>
 
 To start the project: 
 ```python
