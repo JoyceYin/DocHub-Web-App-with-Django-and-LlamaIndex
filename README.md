@@ -11,7 +11,7 @@ This web application is mainly developed by <b>Django</b> (Web Framework) and <b
 
 ### Installation and Run
 
-<li>Ensure to install [Ollama](https://ollama.com/) in your local and pull LLM from Ollama (Check out [LIBRARIES](https://ollama.com/library) to look for a suitable model):</li>
+<li>Ensure to install <a href="https://ollama.com/"><b>Ollama</b></a> in your local and pull LLM from Ollama (Check out <a href="https://ollama.com/library"><b>LIBRARIES</b></a> to look for a suitable model):</li>
 
 ```ollama
 ollama pull your_model
@@ -20,6 +20,10 @@ ollama pull your_model
 <li>Make sure to install all required libraries below: </li>
 
 ```shell
+# set up a new virtual env
+python -m venv <myenvname>
+<myenvname>/Scripts/activate
+# install all required libraries
 pip install -r requirements.txt
 ```
 
