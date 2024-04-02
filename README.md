@@ -11,4 +11,5 @@ This web application is mainly developed by <b>Django</b> (Web Framework) and <b
 
 ### Presentation
 
+![test](https://github.com/JoyceYin/DocHub-Web-Application/assets/65861783/556a7f0d-a0f1-4101-aac2-a6e920a5e125)
 
