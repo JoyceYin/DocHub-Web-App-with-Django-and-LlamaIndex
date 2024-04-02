@@ -1,0 +1,68 @@
+{% extends "document/base.html" %}
+{% block content %}
+
+<div class="container">
+
+    <h2 class="text-left">Summarization Database</h2>
+    <br>
+
+    <p class="d-inline-flex gap-1">
+        <a class="btn btn-outline-info" data-bs-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Filter/Search</a>
+    </p>
+    <div class="row">
+    <div class="col">
+        <div class="collapse multi-collapse" id="filter">
+        <div class="card card-body">
+            <form action="{% url 'sumdb' %}" method="get">
+                <input name="q" type="text" class="form-control" id="Filterinput" placeholder="Look for summarized doc (keywords)">
+                <br>
+                <button type="submit" class="btnown" >Search</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <br>
+    <div>
+        {% if sum_files %}
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">Document</th>
+                  <th scope="col">Summarized Content</th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in sum_files %}
+                <tr>
+                    <td><a class="mcscore" href="{{ file.doc_link }}" target="_blank">{{ file.doc_name }}</a></td>
+                    <td id="sumfile_{{ file.id }}">{{ file.sum_content }}</td>
+                    <td><button class="btn btn-info" onclick=exportThisItem(sumfile_{{ file.id }})>Export</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Nothing on database yet</p>
+        {% endif %}
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin = "anonymous" referrerpolicy = "no-referrer"> </script>
+<script>
+
+function exportThisItem(theID){
+    content = theID.innerHTML
+    var blob = new Blob([content], { type: 'text/plain' });
+    var filename = theID.id+'.txt'
+    console.log(filename)
+    saveAs(blob, filename);
+}
+
+</script>
+
+{% endblock content %}

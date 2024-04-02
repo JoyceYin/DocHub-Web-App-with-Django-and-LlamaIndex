@@ -1,0 +1,93 @@
+{% extends "document/base.html" %}
+{% block content %}
+
+<div class="container" >
+    <div class="introbody jumbotron" style="height: 800px;">
+        <div style="height: 30%;"></div>
+        <h1 class="display-4">{{ title }}</h1>
+        <p class="lead">{{ subtitle }}</p>
+        <hr class="my-4">
+        <p>A Large Language Model driven solution for your document management and extraction.</p>
+        <p class="lead">
+        <a class="btnown" href="#intro" role="button">Let's Start</a>
+        </p>
+    </div>
+
+    <section id="intro">
+        <div class="row">
+            <h3 class="text-left">Goals</h3>
+            <p>
+                This web application is aim to manage the documents and extract the information efficiently by using Large Language Models (LLM).
+                By uploading your own resource/document, you are able to ask anything on the chatbox that combine uploaded data. In the meantime, 
+                LLM enables us to summarize each document to grab its main idea.
+            </p>
+            <p>
+                It could be an efficient tool when you manage to get information from a group of reference quickly.
+            </p>
+            <p>
+                This web application is mainly developed by <b>Django</b> (Web Framework) and <b>LLamaIndex</b> (Data Framework for LLM Application) in Python.
+            </p>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <h3 class="text-left">Functionalities</h3>
+
+            <div class="row">
+                <h6><mark style="background-color: aquamarine;"> get a better knowledge of your own resource, please <a href="{% url 'upload' %}" class="upload">upload your documents</a> BEFORE using the functionalities below :)</mark></h6>
+                <br>
+                <br>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card">
+                        {% load static %}
+                        <img src="{% static 'img/chatbot.png' %}" class="card-img card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">Chatbot</h5>
+                        <p class="card-text">Ask anything you want to know on the documents</p>
+                        <br>
+                        <a href="{% url 'query' %}" class="btnown">Try chatbot</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        {% load static %}
+                        <img src="{% static 'img/sum.png' %}" class="card-img card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">Summarization</h5>
+                        <p class="card-text">Summarize the documents into one paragraph.</p>
+                        <br>
+                        <a href="{% url 'sumdb' %}"class="btnown">Go to database</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        {% load static %}
+                        <img src="{% static 'img/similar.png' %}" class="card-img card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Document Similarity</h5>
+                            <p class="card-text">Group the documents with a certain similarity. (Coming Soon)</p>
+                            <a href="#" class="btnown">Find similarity</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height: 50%;"></div>
+        <br>
+        <br>
+    </section>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+</script>
+
+{% endblock content %}

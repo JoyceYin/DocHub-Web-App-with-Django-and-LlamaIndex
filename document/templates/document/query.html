@@ -1,0 +1,20 @@
+{% extends "document/base.html" %}
+{% block content %}
+
+<div class="container">
+    
+    <h2 class="text-left">Ask something to your document chatbot.</h2>
+    <br>
+
+    <form class='form-center' action="/query/" method="post">
+        {% csrf_token %}
+        <div>
+            <input type="text" class="form-control" required="required" placeholder="Input Query ..." aria-label="query" name="query">
+            <br>
+            <button type="submit" class="btnown" >Submit</button>
+        </div>
+    </form>
+    
+</div>
+
+{% endblock content %}

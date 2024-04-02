@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>DocHUB</title>
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script> -->
+
+    <style>
+      a.navele:link {color:#6A6E59;font-size: 20px; text-decoration: none;}
+      a.navele:visited{color: #6A6E59;font-size: 20px;}
+      a.navele:hover {color:#939681; font-weight: bold; font-size: 25px;}
+
+      a.upload:link {color:#6A6E59;font-size: 20px; text-decoration: none;}
+      a.upload:visited{color: #6A6E59;font-size: 20px;}
+      a.upload:hover {color:#939681; font-weight: bold; font-size: 20px;}
+
+      .card-img{
+        height: 50%;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .introbody {
+            animation: fadeInAnimation ease 5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        h1 {
+            color: #6A6E59;;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+      body {padding-top: 60px;
+        background-color: rgba(232, 218, 209, 0.924);
+    }
+
+      .btnown {
+        background-color: white; 
+        color: black; 
+        border: 2px solid #6A6E59;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        }
+
+        .btnown:hover {
+        background-color: #6A6E59;
+        color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar bg-body-tertiary fixed-top" style="background-color: #C1AB9C;">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="{% url 'home' %}" style="color: #6A6E59; font:bolder;">DocHUB</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                  <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
+                </span>
+            </button>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                <h4 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #6A6E59;">What can I do here</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                    <a class="navele nav-link active" aria-current="page" href="{% url 'home' %}" style="text-align: center;">Introduction</a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                    <a class="navele nav-link" href="{% url 'query' %}" style="text-align: center;">Querying your documents</a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a class="navele nav-link" href="{% url 'sumdb' %}" style="text-align: center;">Summarization Pool</a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a class="navele nav-link" href="{% url 'upload' %}" style="text-align: center;">Upload your Files</a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a class="navele nav-link" href="{% url 'manage' %}" style="text-align: center;">Manage your Source</a>
+                    </li>
+                 </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    
+    <br><br>
+
+    {% block content %}{% endblock %}
+
+</body>
+
+</html>

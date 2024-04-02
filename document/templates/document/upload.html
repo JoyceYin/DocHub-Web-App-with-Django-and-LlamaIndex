@@ -1,0 +1,93 @@
+{% extends "document/base.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="text-left">Upload Files to enrich your Knowledge HUB</h2>
+    <br>
+
+    {% if form %}
+    <form method="post" enctype="multipart/form-data" id="uploadqaForm">
+        {% csrf_token %}
+        <div class="mb-3">
+            {% load widget_tweaks %}
+            {{ form.file.label_tag }}
+            {{ form.file|attr:"class:form-control"|attr:"id:qaform-content" }}
+        </div>
+        <!-- <button type="submit" class="btn btn-info" id="qauploadBtn">Upload</button> -->
+    </form>
+    {% endif %}
+    
+    <div class='row'>
+        {% if filemsg %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Document Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in filemsg %}
+                <tr>
+                    <th scope="row">{{ file.fname }}</th>
+                    <td>{{ file.status }}</td>
+                    <td>{{ file.url }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+
+        <form method="post" enctype="multipart/form-data" id="processForm">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-info" id="processBtn">Process</button>
+            <!-- Loading spinner -->
+            <button class="btn btn-info" type="button" id="processloader" style="display: none;" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Processing...
+            </button>
+        </form>
+        
+        {% endif %}
+
+        {% if urlmsg %}
+            <p><em>{{ urlmsg }}</em></p>
+        {% endif %}
+    </div>
+
+    {% if output %}
+    <br>
+    {% endif %}
+
+    <br> 
+
+    <a class="btn btn-secondary" href="{% url 'upload' %}" aria-label="Reset tag"><span>Reset</span></a>
+    
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#processForm').on('submit', function(){
+            $('#processBtn').hide(); 
+            $('#processloader').show(); // Show the loader/spinner when form is submitted
+            $('#prcontentSection').hide(); // Hide the content section until new content is loaded
+        });
+
+        // Function to hide the spinner and display the content section
+        function hideLoaderAndShowContent() {
+            $('#processloader').hide();
+            $('#prcontentSection').show();
+        }
+
+        // Call the function to show content when content exists (You might need to adjust this logic)
+        if ('{{ output }}' !== '') {
+            hideLoaderAndShowContent();
+        }
+    });
+
+    $('#qaform-content').change(function(){
+        $('#uploadqaForm').submit()
+    });
+</script>
+{% endblock content %}
