@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.HomePage, name='home'),
     path('query', views.query, name='query'),
     path('sumdb', views.sumdb, name='sumdb'),
+    path('similarity', views.groupdb, name='similarity'),
     path('upload', views.upload, name='upload'),
     path('manage', views.manage, name='manage'),
     path('delete/<id>',views.delete, name='delete'),

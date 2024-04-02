@@ -50,6 +50,9 @@ def sumdb(request):
         file['doc_link'] = '/Doc/{}'.format(file['doc_name'])
     return render(request, "document/summarize.html", {'sum_files':sum_files})
 
+def groupdb(request):
+    return render(request, 'document/groupdoc.html')
+
 def upload(request):
 
     src_loc = 'media/'
