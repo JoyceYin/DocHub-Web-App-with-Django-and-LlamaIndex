@@ -18,8 +18,9 @@ ollama pull your_model
 
 Make sure to install all required libraries below:
 ```shell
-pip install -r requirements. txt
+pip install -r requirements.txt
 ```
+
 To start the project: 
 ```python
 python manage.py runserver
