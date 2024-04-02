@@ -11,6 +11,19 @@ This web application is mainly developed by <b>Django</b> (Web Framework) and <b
 
 ### Installation and Run
 
+Ensure to install [Ollama](https://ollama.com/) in your local and pull LLM from Ollama (Check out [LIBRARIES](https://ollama.com/library) to look for a suitable model):
+```ollama
+ollama pull your_model
+```
+
+Make sure to install all required libraries below:
+```shell
+pip install -r requirements. txt
+```
+To start the project: 
+```python
+python manage.py runserver
+```
 
 ### Demo
 
