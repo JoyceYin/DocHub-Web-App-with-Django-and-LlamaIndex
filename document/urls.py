@@ -5,7 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', views.HomePage, name='home'),
-    path('query', views.query, name='query'),
+    path('query/', views.query, name='query'),
     path('sumdb', views.sumdb, name='sumdb'),
     path('similarity', views.groupdb, name='similarity'),
     path('upload', views.upload, name='upload'),

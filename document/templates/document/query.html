@@ -14,6 +14,24 @@
             <button type="submit" class="btnown" >Submit</button>
         </div>
     </form>
+
+    <br>
+    
+    {% if result %}
+    <h4 class="text-center">Query: {{ query }}</h4>
+    <br>
+    <legend class="p-3 mb-3 bg-light text-dark" style="font-size:20px; font-weight: bold;">Anwser: </legend>
+    
+    <table class="table">
+        <tbody>
+        <tr> 
+            <td>{{ result }}</td>
+        </tr>
+        <tr class="border border-bottom border-3" style="border: #6A6E59"></tr>
+        </tbody>
+    </table>
+    
+    {% endif %} 
     
 </div>
 

@@ -53,11 +53,38 @@
         {% if urlmsg %}
             <p><em>{{ urlmsg }}</em></p>
         {% endif %}
-    </div>
 
-    {% if output %}
-    <br>
-    {% endif %}
+
+        {% if output %}
+        <div id="prcontentSection" style="display: none;">
+            {% for file in output %}
+            <div class="row">
+            <div class="col"></div>
+            <div class="col-6">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">Uploaded File</th>
+                        <td><a class="aclass" href="{{ file.url }}">{{ file.fname }}</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>{{ file.qastatus }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Result</th>
+                        <td>{{ file.result }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="col"></div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
 
     <br> 
 

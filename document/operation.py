@@ -43,11 +43,11 @@ def UploadInitialize(src_loc, count_df, valid_df, FileDB):
     valid_df = valid_df[0:0]
     valid_df.to_csv(src_loc + '/valid.csv', index = False)
 
-    processFiles = FileDB.objects.values('doc_name')
+    processFiles = [item['doc_name'] for item in list(FileDB.objects.values('doc_name'))]
     existingFiles = [i for i in os.listdir(src_loc+'Doc')]
     print(processFiles, existingFiles)
 
-    removeFiles = list(set(existingFiles) - set(processFiles))
+    removeFiles = [f for f in existingFiles if f not in processFiles]
 
     for file in removeFiles:
         os.remove(src_loc + 'Doc/' + file)
