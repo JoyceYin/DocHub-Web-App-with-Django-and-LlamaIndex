@@ -64,7 +64,7 @@ def upload(request):
             form = UploadForm(request.POST, request.FILES)
             if form.is_valid():
                 filelist = request.FILES.getlist('file')
-                filemsg = DocDisplay(src_loc, filelist, SumDB, valid_df)
+                filemsg = DocDisplay(src_loc, filelist, FileDB, valid_df)
 
                 count_df.loc[len(count_df.index)] = [1, filemsg]
                 count_df.to_csv(src_loc + 'upload_time.csv', index = False)
