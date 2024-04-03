@@ -19,7 +19,7 @@ def DocDisplay(src_loc, filelist, FileModel, valid_df, source=False):
             newF["url"] = "N/A"
             newF["status"] = "Must be {}!".format('/'.join(limit_list))
             
-        elif (FileModel.objects.filter(doc_name=file.name)):
+        elif (FileModel.objects.filter(name=file.name)):
             newF["url"] = "N/A"
             newF["status"] = "Result stored in database/Rename the doc"
         else:
@@ -43,9 +43,9 @@ def UploadInitialize(src_loc, count_df, valid_df, FileDB):
     valid_df = valid_df[0:0]
     valid_df.to_csv(src_loc + '/valid.csv', index = False)
 
-    processFiles = [item['doc_name'] for item in list(FileDB.objects.values('doc_name'))]
+    processFiles = [item['name'] for item in list(FileDB.objects.values('name'))]
     existingFiles = [i for i in os.listdir(src_loc+'Doc')]
-    print(processFiles, existingFiles)
+    # print(processFiles, existingFiles)
 
     removeFiles = [f for f in existingFiles if f not in processFiles]
 

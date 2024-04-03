@@ -40,9 +40,9 @@
 
         <form method="post" enctype="multipart/form-data" id="processForm">
             {% csrf_token %}
-            <button type="submit" class="btn btn-info" id="processBtn">Process</button>
+            <button type="submit" class="btnown" id="processBtn">Process</button>
             <!-- Loading spinner -->
-            <button class="btn btn-info" type="button" id="processloader" style="display: none;" disabled>
+            <button class="btnown" type="button" id="processloader" style="display: none;" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Processing...
             </button>
@@ -88,7 +88,7 @@
 
     <br> 
 
-    <a class="btn btn-secondary" href="{% url 'upload' %}" aria-label="Reset tag"><span>Reset</span></a>
+    <a class="btnown" href="{% url 'upload' %}" aria-label="Reset tag"><span>Reset</span></a>
     
 </div>
 

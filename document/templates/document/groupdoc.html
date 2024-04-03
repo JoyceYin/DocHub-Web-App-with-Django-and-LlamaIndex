@@ -2,6 +2,109 @@
 {% block content %}
 
 <div class="container" >
+    <div class="row">
+        <div class="col-6"><h2 class="text-left">Specify groups of documents</h2></div>
+        <div class="col"></div>
+        <div class="col">
+            <button type="button" class="btnown" data-bs-toggle="modal" data-bs-target="#createPopUp">
+                + Create New Group Docs
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="createPopUp" tabindex="-1" aria-labelledby="createPopUpLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="form-center" action="/similarity" method=post>
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="createPopUpLabel">Create a new group</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" required="required" placeholder="kwd" aria-label="create" name="create">
+                    <br>
+                    <input type="number" class="form-control" required="required" id="quantity" placeholder="number of documents in the group" name="quantity" min="1" max="15">
+                </div>
+                <div class="modal-footer">
+                <button type="submit" class="btnown">Find Group</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    
+    {% if msg %}
+    <div class="alert alert-warning" role="alert">
+        {{ msg }}
+    </div>
+    {% endif %}
+
+    <form class='form-center' action="/similarity" method="post" id="kwdForm">
+        {% csrf_token %}
+        <div>
+            <input type="text" class="form-control" required="required" placeholder="Try some keywords ..." aria-label="keyword" name="keyword">
+            <button type="search" class="btnown" >Search</button>
+        </div>
+    </form>
+
+    <div class="row">
+    {% if kwd_list1 %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Document Name</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for k in kwd_list %}
+                <tr>
+                    <td>{{ k.doc_id.name }}</td>
+                    <td>{{ k.kwd }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    {% endif %}
+    </div>
+
+    <!-- Create a div where the graph will take place -->
+    <div id="my_dataviz" style="margin:0; padding:0;">
+
+    </div>
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
+<!-- Color palette -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+{% load static %}
+<script type="text/javascript" src="{% static "js/groupdoc.js" %}"></script>
+
+<script>
+
+    var kwd_data = JSON.parse("{{group_kwd|escapejs}}")
+
+    // set the dimensions and margins of the graph
+    var width = 1080
+    var height = 460
+    
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+
+    var canvas = document.getElementsByTagName('svg')
+    console.log(canvas[0])
+    canvas[0].setAttribute('style', "position: absolute;")
+
+    BubbleChart(svg, kwd_data)
+    
+    </script>
 
 {% endblock content %}

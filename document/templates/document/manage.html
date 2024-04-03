@@ -16,9 +16,9 @@
             <tbody>
                 {% for file in all_files %}
                 <tr>
-                    <td>{{ file.doc_name }}</td>
+                    <td><a href="{{ file.url }}">{{ file.name }}</a></td>
                     <td>
-                        <button class="btnown"><a href="{% url 'delete' id=file.doc_id %}" style="color: black; text-decoration:none;">delete</a></button>
+                        <a href="{% url 'delete' id=file.id %}" style="color: black; text-decoration:none;"><button class="btnown">delete</button></a>
                     </td>
                 </tr>
                 {% endfor %}
