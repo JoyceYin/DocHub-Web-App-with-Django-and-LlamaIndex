@@ -7,7 +7,7 @@ This web application aims to manage the documents and extract the information ef
 
 ### Source
 
-This web application is mainly developed by <b>Django</b> (Web Framework) and <b>LLamaIndex</b> (Data Framework for LLM Application) in Python.
+This web application is mainly developed by <b>Django</b> (Web Framework) and <b>LLamaIndex</b> (Data Framework for LLM Application) in Python and JavaScript (d3.js) for visualization.
 
 ### Installation and Run
 
