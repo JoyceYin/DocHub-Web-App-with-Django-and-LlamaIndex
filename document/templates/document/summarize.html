@@ -37,7 +37,7 @@
             <tbody>
                 {% for file in sum_files %}
                 <tr>
-                    <td><a class="mcscore" href="{{ file.doc_id.url }}" target="_blank">{{ file.doc_id.name }}</a></td>
+                    <td><a class="aclick" href="{{ file.doc_id.url }}" target="_blank">{{ file.doc_id.name }}</a></td>
                     <td id="sumfile_{{ file.doc_id }}">{{ file.sum_content }}</td>
                     <td><button class="btnown">Export</button></td>
                 </tr>

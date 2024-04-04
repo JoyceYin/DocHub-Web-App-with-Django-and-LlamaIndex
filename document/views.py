@@ -26,10 +26,10 @@ from llama_index.embeddings.langchain import LangchainEmbedding
 import chromadb
 from chromadb import Settings
 
-llm = Ollama(model="tinyllama",  #openhermes2.5-mistral
+llm = Ollama(model="openhermes2.5-mistral",  #openhermes2.5-mistral
              temperature=0.1)
 embed_model = LangchainEmbedding(
-    HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2', model_kwargs={'device': 'mps'})  #model_kwargs={'device': 'mps'}
+    HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')  #model_kwargs={'device': 'mps'}
 )
 sum_db = chromadb.PersistentClient(path="document/chroma_sumdb", settings=Settings(anonymized_telemetry=False) )
 qa_db = chromadb.PersistentClient(path="document/chroma_qadb", settings=Settings(anonymized_telemetry=False) )
@@ -79,8 +79,14 @@ def groupdb(request):
     return render(request, 'document/groupdoc.html', {'kwd_list':kwd_list, "group_kwd":group_kwd})
 
 def upload(request):
-
+    
     src_loc = 'media/'
+    if not os.path.exists(src_loc+'Doc'):
+        os.makedirs(src_loc+'Doc')
+        
+    if not os.path.exists(src_loc+'LLMprocess'):
+        os.makedirs(src_loc+'LLMprocess')
+    
     count_df = pd.read_csv(src_loc + 'upload_time.csv')
     valid_df = pd.read_csv(src_loc + 'valid.csv')
     
