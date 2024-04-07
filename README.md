@@ -48,7 +48,6 @@ embed_model = LangchainEmbedding(
 )
 ```
 
-<hr>
 <li>To start the project:</li>
 
 ```python
