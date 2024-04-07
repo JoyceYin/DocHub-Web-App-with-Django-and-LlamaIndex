@@ -1,11 +1,12 @@
 # DocHub-Web-Application
-A Full-Stack Web App with LLamaIndex and Django to query and summarize documents
+A Full-Stack Web App with **LLamaIndex** and **Django** to query and summarize documents
 
 ### Table of Content
 - [Objectives](#Objectives)
 - [Set Up](#Set-Up)
 - [Methodology](#Methodology)
 - [Demo](#Demo)
+---
 
 ### Objectives
 
