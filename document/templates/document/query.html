@@ -6,12 +6,17 @@
     <h2 class="text-left">Ask something to your document chatbot.</h2>
     <br>
 
-    <form class='form-center' action="/query" method="post">
+    <form class='form-center' action="/query" method="post" id="queryForm">
         {% csrf_token %}
         <div>
             <input type="text" class="form-control" required="required" placeholder="Input Query ..." aria-label="query" name="query">
             <br>
-            <button type="submit" class="btnown" >Submit</button>
+            <button type="submit" class="btnown" id="queryBtn">Submit</button>
+            <!-- Loading spinner -->
+            <button class="btnown" type="button" id="queryloader" style="display: none;" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Generating Anwser...
+            </button>
         </div>
     </form>
 
@@ -22,7 +27,7 @@
     <br>
     <legend class="p-3 mb-3 bg-light text-dark" style="font-size:20px; font-weight: bold;">Anwser: </legend>
     
-    <table class="table">
+    <table id="querySection" class="table">
         <tbody>
         <tr> 
             <td>{{ result }}</td>
@@ -34,5 +39,27 @@
     {% endif %} 
     
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#queryForm').on('submit', function(){
+            $('#queryBtn').hide(); 
+            $('#queryloader').show(); // Show the loader/spinner when form is submitted
+            $('#querySection').hide(); // Hide the content section until new content is loaded
+        });
+
+        // Function to hide the spinner and display the content section
+        function hideLoaderAndShowContent() {
+            $('#queryloader').hide();
+            $('#querySection').show();
+        }
+
+        // Call the function to show content when content exists (You might need to adjust this logic)
+        if ('{{ output }}' !== '') {
+            hideLoaderAndShowContent();
+        }
+    });
+</script>
 
 {% endblock content %}

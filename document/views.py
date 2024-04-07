@@ -26,7 +26,7 @@ from llama_index.embeddings.langchain import LangchainEmbedding
 import chromadb
 from chromadb import Settings
 
-llm = Ollama(model="openhermes2.5-mistral",  #openhermes2.5-mistral
+llm = Ollama(model="gemma:2b",  #openhermes2.5-mistral
              temperature=0.1)
 embed_model = LangchainEmbedding(
     HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')  #model_kwargs={'device': 'mps'}
