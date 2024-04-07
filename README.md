@@ -1,6 +1,12 @@
 # DocHub-Web-Application
 A Full-Stack Web App with LLamaIndex and Django to query and summarize documents
 
+### Table of Content
+- [Objectives](#Objectives)
+- [Set Up](#Set-Up)
+- [Methodology](#Methodology)
+- [Demo](#Demo)
+
 ### Objectives
 
 This web application aims to manage the documents and extract the information efficiently by using Large Language Models (LLM). By uploading your resource/document, you are able to ask anything on the chatbox that combines uploaded data. In the meantime, LLM enables us to summarize each document to grab its main idea.
@@ -9,7 +15,7 @@ This web application aims to manage the documents and extract the information ef
 
 This web application is mainly developed by <b>Django</b> (Web Framework) and <b>LLamaIndex</b> (Data Framework for LLM Application) in Python and JavaScript (d3.js) for visualization.
 
-### Installation and Run
+### Set Up
 
 <li>Ensure to install <a href="https://ollama.com/"><b>Ollama</b></a> in your local and pull LLM from Ollama (Check out <a href="https://ollama.com/library"><b>LIBRARIES</b></a> to look for a suitable model):</li>
 
@@ -47,6 +53,13 @@ embed_model = LangchainEmbedding(
 ```python
 python manage.py runserver
 ```
+
+### Methodology
+#### 1. LLMs Implementation
+
+#### 2. Django and Database Schema
+
+#### 3. Keyword based Document Grouping
 
 ### Demo
 
