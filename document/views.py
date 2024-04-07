@@ -67,12 +67,17 @@ def groupdb(request):
             newkwd = request.POST.get('create',None)
             num = request.POST.get('quantity',None)
             msg = CreateNewGroup(newkwd, qa_db, num, DocInfo, Keyword)
-
             kwd_list = Keyword.objects.all()
             group_kwd = list(Keyword.objects.values('kwd').annotate(cnt=Count('kwd')))
             group_kwd = json.dumps(group_kwd)
             return render(request, 'document/groupdoc.html', {'kwd_list':kwd_list, 
-                                                              "group_kwd":group_kwd, 'msg':msg})
+                                                                "group_kwd":group_kwd, 'msg':msg})
+        else:
+            searchkwd = request.POST.get('keyword',None)
+            kwd_list = Keyword.objects.filter(kwd__icontains=searchkwd)
+            group_kwd = list(kwd_list.values('kwd').annotate(cnt=Count('kwd')))
+            group_kwd = json.dumps(group_kwd)
+            return render(request, 'document/groupdoc.html', {'kwd_list':kwd_list, "group_kwd":group_kwd})
     kwd_list = Keyword.objects.all()
     group_kwd = list(Keyword.objects.values('kwd').annotate(cnt=Count('kwd')))
     group_kwd = json.dumps(group_kwd)

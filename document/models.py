@@ -17,8 +17,3 @@ class SumDoc(models.Model):
 class Keyword(models.Model):
     doc_id = models.ForeignKey(DocInfo, on_delete=models.CASCADE)
     kwd = models.CharField(max_length=50, default="None")
-
-# class queryDB(models.Model):
-#     # id = models.CharField(max_length=50, primary_key=True)
-#     doc_id = models.ForeignKey(SumDB, on_delete=models.CASCADE)
-#     doc_name = models.CharField(max_length=100)
