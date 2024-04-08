@@ -1,14 +1,14 @@
 # DocHub-Web-Application
 A Full-Stack Web App with **LLamaIndex** and **Django** to query and summarize documents
 
-### Table of Content
+## Table of Content
 - [Objectives](#Objectives)
 - [Set Up](#Set-Up)
 - [Methodology](#Methodology)
 - [Demo](#Demo)
 ---
 
-### Objectives
+## Objectives
 
 This web application aims to manage the documents and extract the information efficiently by using Large Language Models (LLM). By uploading your resource/document, you are able to ask anything on the chatbox that combines uploaded data. In the meantime, LLM enables us to summarize each document to grab its main idea.
 
@@ -16,7 +16,7 @@ This web application aims to manage the documents and extract the information ef
 
 This web application is mainly developed by <b>Django</b> (Web Framework) and <b>LLamaIndex</b> (Data Framework for LLM Application) in Python and JavaScript (d3.js) for visualization.
 
-### Set Up
+## Set Up
 
 <li>Ensure to install <a href="https://ollama.com/"><b>Ollama</b></a> in your local and pull LLM from Ollama (Check out <a href="https://ollama.com/library"><b>LIBRARIES</b></a> to look for a suitable model):</li>
 
@@ -54,8 +54,8 @@ embed_model = LangchainEmbedding(
 python manage.py runserver
 ```
 
-### Methodology
-#### 1. LLMs Implementation
+## Methodology
+### 1. LLMs Implementation
 
 **Ollama and LlamaIndex**
 
@@ -93,13 +93,14 @@ To store every small chunk of document embedding, ChromaDB is employed as the ve
 
 To generate QA chat based on uploaded documents, we stored document embeddings on one ChromaDB collection to enrich document knowledge. When users post query data, it can directly search from embedded document chunks. When we look for a group of documents that related to a specific topic, we can simply query the collection by looking at the similarity. Besides, we could manage files by deleting unwanted embedding from existing collections. 
 
-#### 2. Database Schema
+### 2. Database Schema
 
-#### 3. Keyword based Document Grouping
+### 3. Keyword based Document Grouping
 
-### Demo
+## Demo
 
 ![test](https://github.com/JoyceYin/DocHub-Web-Application/assets/65861783/556a7f0d-a0f1-4101-aac2-a6e920a5e125)
 
-### Reference
+## Reference
+
 [^1][Q&A with RAG | LangChain](https://python.langchain.com/docs/use_cases/question_answering/#rag-architecture) 
