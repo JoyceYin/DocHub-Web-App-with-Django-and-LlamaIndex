@@ -6,6 +6,7 @@ A Full-Stack Web App with **LLamaIndex** and **Django** to query and summarize d
 - [Set Up](#Set-Up)
 - [Methodology](#Methodology)
 - [Demo](#Demo)
+- [Further Improvement](#Further-Improvement)
 ---
 
 ## Objectives
@@ -77,7 +78,7 @@ RAG is a technique for augmenting LLM knowledge with additional data (in my case
     ```
 
     ![image](https://github.com/JoyceYin/DocHub-Web-App-with-Django-and-LlamaIndex/assets/65861783/b164b8ed-d28d-4c7a-84c8-07d42cd324d0)
-    Why Splitting: Text splitters break large Documents into smaller chunks. This is useful both for indexing data and for passing it into a model, since large chunks are harder to search over and won’t fit in a model’s finite context window [^1].
+    Why Splitting: Text splitters break large Documents into smaller chunks. This is useful both for indexing data and for passing it into a model, since large chunks are harder to search over and won’t fit in a model’s finite context window <sup>[1]</sup>.
 
 2. Retrieval and Generation
    
@@ -93,14 +94,19 @@ To store every small chunk of document embedding, ChromaDB is employed as the ve
 
 To generate QA chat based on uploaded documents, we stored document embeddings on one ChromaDB collection to enrich document knowledge. When users post query data, it can directly search from embedded document chunks. When we look for a group of documents that related to a specific topic, we can simply query the collection by looking at the similarity. Besides, we could manage files by deleting unwanted embedding from existing collections. 
 
-### 2. Database Schema
-
-### 3. Keyword based Document Grouping
+### 2. Keyword-based Document Grouping
 
 ## Demo
 
 ![test](https://github.com/JoyceYin/DocHub-Web-Application/assets/65861783/556a7f0d-a0f1-4101-aac2-a6e920a5e125)
 
+## Further Improvement
+
+Formatting the documents is another essential part when generating the reference. LLM could do it as well. To some extent, we could query the document with a powerful, heavyweight model. The illustration below uses OpenHermes on Mistral `openhermes2.5-mistral`
+
+![image](https://github.com/JoyceYin/DocHub-Web-App-with-Django-and-LlamaIndex/assets/65861783/62bdc9b4-81bb-4b93-94bd-3df2d99895e8)
+
+
 ## Reference
 
-[^1][Q&A with RAG | LangChain](https://python.langchain.com/docs/use_cases/question_answering/#rag-architecture) 
+[1][Q&A with RAG | LangChain](https://python.langchain.com/docs/use_cases/question_answering/#rag-architecture) 
