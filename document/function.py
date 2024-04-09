@@ -3,6 +3,7 @@ import numpy as np
 from datetime import datetime 
 import shutil
 import os
+import ast
 
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.vector_stores.chroma import ChromaVectorStore
@@ -27,16 +28,13 @@ def answerLLM(query, qa_db, embed_model, llm):
     return str(response)
 
 #upload files: summarizing + add RAG for qa
-def uploadLLM(src_loc, valid_df, qa_db, sum_db, embed_model, llm, kw_model, DBdict):
+def uploadLLM(src_loc, valid_df, qa_db, embed_model, llm, llm_name, kw_model, DBdict):
     message = []
     qa_collection = {}
 
     sum_query = 'please summarize the document'
-    sum_collection = {}
+    # sum_collection = {}
     sum_index = {}
-
-    #not suitable for tinyllama
-    # kwd_query = 'Please list 3 main keywords of this document and seperated by comma.'
 
     for _,row in valid_df.iterrows():
         newD = dict()
@@ -61,20 +59,25 @@ def uploadLLM(src_loc, valid_df, qa_db, sum_db, embed_model, llm, kw_model, DBdi
 
         newD['keyword'] = [k[0] for k in keywords]
 
-        #summarization
-        # try:
-        #     sum_db.delete_collection('summarize')
-        # except:
-        #     sum_collection = sum_db.create_collection('summarize')
-        # sum_vector_store = ChromaVectorStore(chroma_collection=sum_collection, llm=None)
 
-        # storage_context = StorageContext.from_defaults(vector_store=sum_vector_store)
         sum_index = VectorStoreIndex.from_documents(
             documents, embed_model=embed_model
         )
 
         query_engine = sum_index.as_query_engine(llm=llm)
         sum_response = query_engine.query(sum_query)
+        
+        ### directly use llm to extract keyword
+        if llm_name == "openhermes2.5-mistral":
+            list_kwd = query_engine.query('Please perform keyword on the document. Please list top 3 unigram or bigram keywords using Python list format.')
+            print('keyword generated: ', list_kwd)
+            newD['keyword'] = ast.literal_eval(str(list_kwd))
+        else:
+            keywords = kw_model.extract_keywords(text_, keyphrase_ngram_range=(1, 2), 
+                                             stop_words='english', threshold=.75, 
+                                             use_mmr=True, top_n=3)
+
+            newD['keyword'] = [k[0] for k in keywords]
 
         # kwd_response = query_engine.query(kwd_query)
         # newD['keyword'] = kwd_response

@@ -26,7 +26,8 @@ from llama_index.embeddings.langchain import LangchainEmbedding
 import chromadb
 from chromadb import Settings
 
-llm = Ollama(model="gemma:2b",  #openhermes2.5-mistral
+llm_name = "openhermes2.5-mistral"
+llm = Ollama(model=llm_name,  #openhermes2.5-mistral  gemma:2b
              temperature=0.1)
 embed_model = LangchainEmbedding(
     HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')  #model_kwargs={'device': 'mps'}
@@ -129,7 +130,7 @@ def upload(request):
                     'SumDoc': SumDoc,
                     'Keyword': Keyword
                 }
-                output = uploadLLM(src_loc, valid_df, qa_db, sum_db, embed_model, llm, kw_model, DBdict)
+                output = uploadLLM(src_loc, valid_df, qa_db, embed_model, llm, llm_name, kw_model, DBdict)
                 valid_df = valid_df[0:0]
                 valid_df.to_csv(src_loc + 'valid.csv', index = False)
                 return render(request, 'document/upload.html', {"output":output})
